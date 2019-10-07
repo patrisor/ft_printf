@@ -23,6 +23,3 @@ int		main(void)
 
 ### 2019-10-07 10:06:20
 Outlined work for project
-
-### 2019-10-07 10:11:17
-Testing python push script
