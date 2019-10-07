@@ -6,7 +6,7 @@
 #    By: patrisor <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 09:25:34 by patrisor          #+#    #+#              #
-#    Updated: 2019/10/07 10:03:50 by patrisor         ###   ########.fr        #
+#    Updated: 2019/10/07 10:10:52 by patrisor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ def push():
     f = open("README.md", "a+") 
     ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
     f.write("\n### " + ts + "\n" + sys.argv[1] + "\n")
-    os.system("git add -u; git reset -- " + sys.argv[0] + "; git commit -m '" + 
-            sys.argv[1] + "'; git push")
+    os.system("git add *; git commit -m '" + sys.argv[1] + "'; git reset HEAD " + 
+            sys.argv[0] + "; git push")
     f.close()
 
 push()
