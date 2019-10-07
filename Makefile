@@ -6,63 +6,73 @@
 #    By: patrisor <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/31 03:31:01 by patrisor          #+#    #+#              #
-#    Updated: 2019/05/31 10:50:43 by patrisor         ###   ########.fr        #
+#    Updated: 2019/09/04 16:17:53 by patrisor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+include libprintf.mk
 
-FLAGS = -Wall -Wextra -Werror -O2
+# directories
+SRC_DIR  := ./src
+INC_DIR  := ./includes
+OBJ_DIR  := ./obj
+TEST_DIR := ./test
 
-LIBFT = libft
+# src / obj files
+SRC		:= printf.c \
+		   format.c \
+		   check.c \
+		   \
+		   util/ft.c \
+		   #get_param.c \
+		   replace.c \
+		   write.c \
+		   \
+		   util/atoi.c \
+		   util/itoa.c \
+		   util/ft.c \
+		   util/number.c \
+		   \
+		   handlers/percent.c \
+		   handlers/char.c \
+		   handlers/string.c \
+		   handlers/hex.c
 
-DIR_S = srcs
+OBJ		:= $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
-DIR_O = obj
+# compiler
+CC		:= gcc
+CFLAGS	:= -Wall -Wextra -Werror
+CFLAGS	+= -O3 -march=native -pipe
 
-HEADER = includes
+NAME	:= $(PRINTF_NAME)
 
-SOURCES = ft_printf.c \
-			pf_parsing.c \
-			pf_number.c \
-			pf_string.c \
-			pf_bonus.c \
-
-SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
-
-OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
-
+# rules
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@make -C $(LIBFT)
-	@cp libft/libft.a ./$(NAME)
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/util
+	mkdir -p $(OBJ_DIR)/handlers
 
-$(DIR_O)/%.o: $(DIR_S)/%.c $(HEADER)/ft_printf.h
-	@mkdir -p obj
-	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) $(LIB_INC) -o $@ -c $<
+
+$(NAME): $(OBJ_DIR) $(OBJ)
+	ar rc $(PRINTF_NAME) $(OBJ)
+	ranlib $(PRINTF_NAME)
 
 test:
-	@make all misc/main.c
-
-norme:
-	norminette ./libft/
-	@echo
-	norminette ./$(HEADER)/
-	@echo
-	norminette ./$(DIR_S)/
+	@$(MAKE) -C $(TEST_DIR) --no-print-directory
 
 clean:
-	@rm -f $(OBJS)
-	@rm -rf $(DIR_O)
-	@make clean -C $(LIBFT)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@rm -f $(NAME)
-	@make fclean -C $(LIBFT)
+	rm -f $(PRINTF_NAME)
 
-re: fclean all
+re:
+	@$(MAKE) fclean --no-print-directory
+	@$(MAKE) all --no-print-directory
 
-.PHONY: fclean re norme all clean
+.PHONY: all clean fclean re relibs test
