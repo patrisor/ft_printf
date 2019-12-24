@@ -21,5 +21,8 @@ int		main(void)
 
 ## Updates
 
-### 2019-10-07 10:06:20
-Outlined work for project
+### 2019-10-07 10:04:24
+outlined work for project
+
+### 2019-10-07 10:10:45
+Testing python push script

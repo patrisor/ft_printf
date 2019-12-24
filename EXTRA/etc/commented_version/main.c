@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pow.c                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: patrisor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/17 22:20:14 by patrisor          #+#    #+#             */
-/*   Updated: 2019/12/23 06:28:34 by patrisor         ###   ########.fr       */
+/*   Created: 2019/09/03 07:26:26 by patrisor          #+#    #+#             */
+/*   Updated: 2019/10/10 04:47:41 by patrisor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "includes/ft_printf.h"
 
-int			ft_pow(int x, int y)
+int		main(int argc, char **argv)
 {
-	if (y == 0)
-        return(1);
-    else if ((y % 2) == 0)
-        return(ft_pow(x, y / 2) * ft_pow(x, y / 2));
-    else
-        return(x * ft_pow(x, y / 2) * ft_pow(x, y / 2));
+	if (argc != 2)
+		return (-1);
+	ft_printf("TEST: %s", argv[1]);
+	return (0);
 }

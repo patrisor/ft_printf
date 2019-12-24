@@ -6,7 +6,7 @@
 /*   By: patrisor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/23 13:20:29 by patrisor          #+#    #+#             */
-/*   Updated: 2019/05/13 23:00:49 by patrisor         ###   ########.fr       */
+/*   Updated: 2019/12/23 06:45:13 by patrisor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ char			*ft_strcpy(char *s1, const char *s2);
 char			*ft_strncpy(char *dst, const char *src, size_t len);
 char			*ft_strchr(const char *s, int c);
 int				ft_strcmp(const char *s1, const char *s2);
+void			ft_strrev(char* str, int len);
 int				ft_isdigit(int c);
 int				ft_isodd(int num);
 int				ft_toupper(int c);
 int				ft_tolower(int c);
 int				ft_atoi(const char *str);
+int				ft_atoi_base(char *nb, int base);
 void			ft_bzero(void *s, size_t n);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
@@ -59,6 +61,7 @@ char			*ft_strstr(const char *big, const char *little);
 char			*ft_strchange(size_t size, char c);
 char			*ft_strinit(size_t size, int c);
 char			*ft_itoa(int n);
+void			ft_ftoa(float n, char* res, int afterpoint);
 void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
 void			ft_putchar_fd(char c, int fd);

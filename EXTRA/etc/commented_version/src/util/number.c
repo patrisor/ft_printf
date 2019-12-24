@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pow.c                                           :+:      :+:    :+:   */
+/*   number.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patrisor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/17 22:20:14 by patrisor          #+#    #+#             */
-/*   Updated: 2019/12/23 06:28:34 by patrisor         ###   ########.fr       */
+/*   Created: 2017/10/17 08:35:30 by pbondoer          #+#    #+#             */
+/*   Updated: 2017/10/17 08:35:45 by pbondoer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "ft_printf.h"
 
-int			ft_pow(int x, int y)
+int		pf_max(int a, int b)
 {
-	if (y == 0)
-        return(1);
-    else if ((y % 2) == 0)
-        return(ft_pow(x, y / 2) * ft_pow(x, y / 2));
-    else
-        return(x * ft_pow(x, y / 2) * ft_pow(x, y / 2));
+	return (a > b ? a : b);
+}
+
+int		pf_get_base(char c)
+{
+	if (c == 'X' || c == 'x' || c == 'p')
+		return (16);
+	else if (c == 'o')
+		return (8);
+	else
+		return (10);
 }
